@@ -17,6 +17,6 @@ La repo raccoglie sia la parte teorica di progettazione sia l’implementazione 
 
 -> docs/ProgettazioneTowerDefence.pdf (file dispensa del professore)
 
--> Storia.sdocx (file modificabile Samsung Notes, con la lore)
+-> docs/Storia.sdocx (file modificabile Samsung Notes, con la lore)
 
--> Storia.pdf (coverted del sdocx, visualizzabile da tutti)
+-> docs/Storia.pdf (versione pdf della lore, visualizzabile da tutti)
