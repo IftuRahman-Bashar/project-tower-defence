@@ -12,3 +12,11 @@ All’interno della repo sono presenti:
 - Codice sorgente del gioco
 
 La repo raccoglie sia la parte teorica di progettazione sia l’implementazione pratica del gioco
+
+# Repo Structure 
+
+-> docs/ProgettazioneTowerDefence.pdf (file dispensa del professore)
+
+-> Storia.sdocx (file modificabile Samsung Notes, con la lore)
+
+-> Storia.pdf (coverted del sdocx, visualizzabile da tutti)
