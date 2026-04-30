@@ -16,5 +16,11 @@ La repo raccoglie sia la parte teorica di progettazione sia l’implementazione 
 # Repo Structure 
 
 -> cartella docs: contiene tutta la documentazione per il gioco (dispense caricate dal prof. e documentazione creata da noi)
+
 -> cartella project: cartella java dove ci sarà il codice
+
 -> images: cartella dove ci saranno gli sprite, sfondi e altri elementi visivi del gioco
+
+# Work Timeline:
+
+30//04 - Requisiti A,B e C: Completamento storia, informazioni sui personaggi, struttura gioco in generali e UML iniziale
