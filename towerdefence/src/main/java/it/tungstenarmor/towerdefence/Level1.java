@@ -1,18 +1,15 @@
 package it.tungstenarmor.towerdefence;
 
-import javafx.animation.*;
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Level1 extends Application {
 
@@ -20,62 +17,70 @@ public class Level1 extends Application {
     public void start(Stage stage) {
 
         Pane root = new Pane();
-        root.setStyle("-fx-background-color: #1e1e1e;");
 
-        // Torre prototipo (rettangolo)
-        Rectangle tower = new Rectangle(50, 50, Color.CYAN);
-        tower.setX(150);
-        tower.setY(300);
+        // Terreno verde menta
+        root.setStyle("-fx-background-color: #ccd5ae;");
 
-        // Santuario (rettangolo grande)
-        Rectangle sanctuary = new Rectangle(80, 200, Color.LIGHTGREEN);
-        sanctuary.setX(1100);
-        sanctuary.setY(250);
+        Random rnd = new Random();
+        List<Rectangle> towers = new ArrayList<>();
 
-        // Lista nemici (Corrotti Minori)
-        List<Polygon> enemies = new ArrayList<>();
+        // Genera 10 torri sparse senza sovrapposizioni
+        for (int i = 0; i < 10; i++) {
 
-        for (int i = 0; i < 5; i++) {
-            Polygon enemy = new Polygon(
-                    0.0, 0.0,
-                    25.0, 12.5,
-                    0.0, 25.0
-            );
-            enemy.setFill(Color.RED);
-            enemy.setLayoutX(-50 * i); // partono sfalsati
-            enemy.setLayoutY(310);
-            enemies.add(enemy);
+            Rectangle tower = new Rectangle(60, 60, Color.web("8a817c"));
+
+            boolean placed = false;
+
+            while (!placed) {
+                double x = rnd.nextDouble() * (1280 * 0.70); // 70% della mappa a sinistra
+                double y = rnd.nextDouble() * 720;
+
+                tower.setX(x);
+                tower.setY(y);
+
+                boolean overlaps = false;
+
+                for (Rectangle other : towers) {
+                    if (tower.getBoundsInParent().intersects(other.getBoundsInParent())) {
+                        overlaps = true;
+                        break;
+                    }
+                }
+
+                if (!overlaps) {
+                    placed = true;
+                    towers.add(tower);
+                    root.getChildren().add(tower);
+                }
+            }
         }
 
-        // Bottone Start Wave
-        Button startWave = new Button("Start Wave");
-        startWave.setLayoutX(20);
-        startWave.setLayoutY(20);
+        // Postazioni Pleiades (posizioni fisse)
+        Rectangle p1 = new Rectangle(30, 30, Color.LIGHTGRAY);
+        p1.setX(250); p1.setY(200);
 
-        root.getChildren().addAll(tower, sanctuary);
-        root.getChildren().add(startWave);
-        root.getChildren().addAll(enemies);
+        Rectangle p2 = new Rectangle(30, 30, Color.LIGHTGRAY);
+        p2.setX(350); p2.setY(300);
 
-        // Movimento lineare dei nemici
-        Timeline movement = new Timeline(
-                new KeyFrame(Duration.millis(16), e -> {
-                    for (Polygon enemy : enemies) {
-                        enemy.setLayoutX(enemy.getLayoutX() + 1.5);
+        Rectangle p3 = new Rectangle(30, 30, Color.LIGHTGRAY);
+        p3.setX(200); p3.setY(400);
 
-                        // Collisione con il Santuario
-                        if (enemy.getBoundsInParent().intersects(sanctuary.getBoundsInParent())) {
-                            enemy.setFill(Color.GRAY); // morto
-                        }
-                    }
-                })
-        );
-        movement.setCycleCount(Timeline.INDEFINITE);
+        // Mura del santuario (altezza completa)
+        Rectangle wall = new Rectangle(100, 10000, Color.LIGHTGRAY);
+        wall.setX(1000);
+        wall.setY(0);
 
-        startWave.setOnAction(e -> movement.play());
+        // Santuario (lavanda) spostato più a destra
+        Rectangle sanctuary = new Rectangle(200, 200, Color.web("#cfbaf0"));
+        sanctuary.setX(1120);
+        sanctuary.setY(260);
+
+
+        root.getChildren().addAll(p1, p2, p3, wall, sanctuary);
 
         Scene scene = new Scene(root, 1280, 720);
         stage.setScene(scene);
-        stage.setTitle("Tungsten Armor TD - Capitolo 1 Livello 1");
+        stage.setTitle("Tungsten Armor TD - Capitolo 1 Livello 1 (Mappa prototipo)");
         stage.show();
     }
 
