@@ -10,26 +10,40 @@ public class ChapterSelect {
 
     public void start(Stage stage) {
 
-        Button capitolo1 = new Button("CAPITOLO 1");
-        Button capitolo2 = new Button("CAPITOLO 2");
+        Button atto1 = new Button("ATTO 1");
+        Button atto2 = new Button("ATTO 2");
+        Button atto3 = new Button("ATTO 3");
+        Button atto4 = new Button("ATTO 4");
         Button back = new Button("INDIETRO");
 
-        capitolo1.setPrefSize(300, 80);
-        capitolo2.setPrefSize(300, 80);
+        atto1.setPrefSize(300, 80);
+        atto2.setPrefSize(300, 80);
+        atto3.setPrefSize(300,80);
+        atto4. setPrefSize(300,80);
         back.setPrefSize(300, 80);
 
-        capitolo1.setStyle("-fx-font-size: 32px; -fx-background-color: #f5f3f4; -fx-text-fill: black;");
-        capitolo2.setStyle("-fx-font-size: 32px; -fx-background-color: #b0c4b1; -fx-text-fill: black;");
+        atto1.setStyle("-fx-font-size: 32px; -fx-background-color: #f5f3f4; -fx-text-fill: black;");
+        atto2.setStyle("-fx-font-size: 32px; -fx-background-color: #003049; -fx-text-fill: white;");
+        atto3.setStyle("-fx-font-size: 32px; -fx-background-color: #f5f3f4; -fx-text-fill: black;");
+        atto4.setStyle("-fx-font-size: 32px; -fx-background-color: #003049; -fx-text-fill: white;");
         back.setStyle("-fx-font-size: 32px; -fx-background-color: #e63946; -fx-text-fill: white;");
 
-        capitolo1.setOnAction(e -> {
+        atto1.setOnAction(e -> {
             LevelSelect levelSelect = new LevelSelect();
             levelSelect.start(stage);
         });
 
-        // Capitolo 2 NON collegato a nulla
-        capitolo2.setOnAction(e -> {
-            System.out.println("Capitolo 2 non ancora disponibile.");
+        // gli altri NON sono collegati a nulla
+        atto2.setOnAction(e -> {
+            System.out.println("non disponibile");
+        });
+
+        atto3.setOnAction(e -> {
+            System.out.println("non disponibile");
+        });
+
+        atto4.setOnAction(e -> {
+            System.out.println("non disponibile");
         });
 
         back.setOnAction(e -> {
@@ -41,9 +55,11 @@ public class ChapterSelect {
             }
         });
 
-        VBox layout = new VBox(40, capitolo1, capitolo2, back);
+        VBox layout = new VBox(40, atto1, atto2, atto3, atto4, back);
         layout.setAlignment(Pos.CENTER);
-        layout.setStyle("-fx-background-color: #003049;");
+        layout.setStyle("-fx-background-color: #e5e5e5;");
+
+        // #003049 da provare
 
         Scene scene = new Scene(layout, 1280, 720);
         stage.setScene(scene);
